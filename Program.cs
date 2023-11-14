@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TP5_ASP.NET_API_WEB.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
